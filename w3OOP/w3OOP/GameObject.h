@@ -4,10 +4,10 @@ class GameObject{
 public: 
 	GameObject();
 	~GameObject();
-	void load(const char* title, int xpos, int ypos, int width, int height, Uint32 flags);
-	void draw(SDL_Renderer* m_pRenderer);
-	void update();
-	void render();
+	void load(const char* title,  int width, int height);
+	void draw(int, const char* , int , int);
+	void update(int);
+	void render(bool);
 	void clean();
 	bool running();
 
@@ -22,7 +22,7 @@ private:
 protected:
 	SDL_Rect m_sourceRectangle;
 	SDL_Rect m_destinationRectangle;
-	
+	bool isRunning;
 
 };
 

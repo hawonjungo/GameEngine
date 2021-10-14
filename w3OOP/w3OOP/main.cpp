@@ -1,19 +1,22 @@
 #pragma once
 #include <SDL.h>
 #include "GameObject.h"
+#include "Player.h"
 
 
 int main(int argc, char** argv) {
 	
-	GameObject* game = new GameObject();
-	game->load("My Game",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED, 640,480,SDL_WINDOW_SHOWN);
-	game->draw(game->getRenderer());
+	Player* player = new Player(8,"assets/run.bmp",10,795);
+	player->load("My Game",1280,940);
+	player->draw();
 
-	while (game->running()) {
-		game->update();
-		game->render();
+
+
+	while (player->running()) {
+		player->update();
+		player->render();
 	}
-	game->clean();
+	player->clean();
 
 	return 0;
 }
