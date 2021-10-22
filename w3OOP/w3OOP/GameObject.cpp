@@ -1,13 +1,13 @@
 #pragma once
 #include "GameObject.h"
-
-
+SDL_Renderer* GameObject::m_pRenderer = nullptr;
 GameObject::GameObject() {
 	isRunning = false;
 }
 GameObject::~GameObject() {
 
 }
+
 void GameObject::load(const char* title, int width, int height) {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
 		sdlWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -21,7 +21,8 @@ void GameObject::load(const char* title, int width, int height) {
 }
 void GameObject::draw(int m_frames, const char* m_texture, int m_position_x, int m_position_y) {
 
-	pTempSurface = SDL_LoadBMP(m_texture);
+	//pTempSurface = SDL_LoadBMP(m_texture);
+	pTempSurface = IMG_Load(m_texture);
 	m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
 	SDL_FreeSurface(pTempSurface);
 
@@ -40,12 +41,25 @@ void GameObject::draw(int m_frames, const char* m_texture, int m_position_x, int
 }
 void GameObject::update(int m_frame) {
 	m_sourceRectangle.x = m_sourceRectangle.w * ((SDL_GetTicks() / 80) % 8);
-	SDL_RenderClear(m_pRenderer);
+	//SDL_RenderClear(m_pRenderer);
 }
-void GameObject::render(bool flipToLeft) {
 
-	SDL_RenderCopyEx(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle, 0, 0, SDL_FLIP_NONE);
-	SDL_RenderPresent(m_pRenderer);
+void GameObject::renderClean() {
+	SDL_RenderClear(m_pRenderer);
+
+}
+
+
+void GameObject::render(bool flipToLeft) {
+	if (flipToLeft == true) {
+		SDL_RenderCopyEx(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle, 0, 0, SDL_FLIP_HORIZONTAL);
+	}
+	else {
+		SDL_RenderCopyEx(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle, 0, 0, SDL_FLIP_NONE);
+		//SDL_RenderPresent(m_pRenderer);
+	}
+	
+
 }
 void GameObject::clean() {
 	SDL_Delay(1000);
@@ -56,6 +70,7 @@ void GameObject::clean() {
 	SDL_Quit();
 }
 bool GameObject::running() {
+
 	return true;
 }
 

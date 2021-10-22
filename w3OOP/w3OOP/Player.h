@@ -9,6 +9,8 @@ public:
 	void draw();
 	void update();
 	void render();
+	void handleEvents();
+	void playerMove(int, int);
 
 private:
 	int m_frames;
