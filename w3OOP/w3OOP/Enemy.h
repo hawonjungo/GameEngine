@@ -10,6 +10,9 @@ public:
 	void update();
 	void render();
 	
+	void autoAttack();
+
+
 	void setFlip(bool flip) {
 		flipToLeft = flip;
 	}

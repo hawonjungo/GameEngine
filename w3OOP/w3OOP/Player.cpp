@@ -7,6 +7,8 @@ Player::Player(int m_pframes, const char* m_ptexture, int posX, int posY)
 	m_positionX = posX;
 	m_positionY = posY;
 
+	m_velocity_right = new Vector2D(5, 0);
+	m_velocity_left = new Vector2D(-5, 0);
 }
 
 Player::~Player()
@@ -22,6 +24,20 @@ void Player::draw()
 
 void Player::update()
 {
+	if (flipToLeft) {
+		Player::playerMove(m_velocity_left);
+	}
+	else {
+		Player::playerMove(m_velocity_right);
+	}
+
+	if (m_destinationRectangle.x > 1100) {
+		flipToLeft = true;
+	}
+	else if(m_destinationRectangle.x<0) {
+		flipToLeft = false;
+	}
+	
 	GameObject::update(m_frames);
 }
 
@@ -38,29 +54,34 @@ void Player::handleEvents()
 		case SDL_KEYDOWN:
 			switch (event.key.keysym.sym) {
 			case SDLK_LEFT:
-				playerMove(-10,0);
+				flipToLeft = true;
+					playerMove(m_velocity_left);
+				
+			
 				break;
 			case SDLK_RIGHT:
-				playerMove(10,0);
+				flipToLeft = false;
+					playerMove(m_velocity_right);
+			
 				break;
 			case SDLK_UP:
-				playerMove(0,-10);
+				//playerMove(0,-5);
 				break;
 			case SDLK_DOWN:
-				playerMove(0,10);
+				//playerMove(0,5);
 				break;
 			case SDLK_c:
-				playerMove(0,-100);
+				//playerMove(0,-100);
 				break;
 			default:
 				break;
 			}
 			break;
 		case SDL_MOUSEBUTTONDOWN:
-			playerMove(0,12);
+			//playerMove(0,5);
 			break;
 		case SDL_MOUSEBUTTONUP:
-			playerMove(0,-5);
+			//playerMove(0,-5);
 			break;
 
 		default:
@@ -69,8 +90,8 @@ void Player::handleEvents()
 	}
 }
 
-void Player::playerMove(int step_x, int step_y)
+void Player::playerMove(Vector2D* m_velocity)
 {
-	m_destinationRectangle.x += step_x;
-	m_destinationRectangle.y += step_y;
+	m_destinationRectangle.x += m_velocity->getX();
+	m_destinationRectangle.y += m_velocity->getY();
 }

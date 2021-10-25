@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "Vector2D.h"
 class Player: public GameObject
 {
 public:
@@ -10,7 +11,7 @@ public:
 	void update();
 	void render();
 	void handleEvents();
-	void playerMove(int, int);
+	void playerMove(Vector2D*);
 
 private:
 	int m_frames;
@@ -18,6 +19,9 @@ private:
 	int m_positionX;
 	int m_positionY;
 	bool flipToLeft = false;
+
+	Vector2D* m_velocity_right;
+	Vector2D* m_velocity_left;
 
 };
 

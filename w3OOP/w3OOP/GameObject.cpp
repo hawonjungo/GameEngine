@@ -21,7 +21,7 @@ void GameObject::load(const char* title, int width, int height) {
 }
 void GameObject::draw(int m_frames, const char* m_texture, int m_position_x, int m_position_y) {
 
-	//pTempSurface = SDL_LoadBMP(m_texture);
+	pTempSurface = SDL_LoadBMP(m_texture);
 	pTempSurface = IMG_Load(m_texture);
 	m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
 	SDL_FreeSurface(pTempSurface);
@@ -43,6 +43,7 @@ void GameObject::update(int m_frame) {
 	m_sourceRectangle.x = m_sourceRectangle.w * ((SDL_GetTicks() / 80) % 8);
 	//SDL_RenderClear(m_pRenderer);
 }
+
 
 void GameObject::renderClean() {
 	SDL_RenderClear(m_pRenderer);

@@ -27,3 +27,8 @@ void Enemy::render()
 {
 	GameObject::render(flipToLeft);
 }
+
+void Enemy::autoAttack()
+{
+}
+

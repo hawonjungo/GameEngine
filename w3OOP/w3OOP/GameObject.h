@@ -17,15 +17,20 @@ public:
 	SDL_Renderer* getRenderer();
 
 private:
-	SDL_Window* sdlWindow;
+
+
 	
-	SDL_Surface* pTempSurface;
-	SDL_Texture* m_pTexture;
 protected:
 	SDL_Rect m_sourceRectangle;
 	SDL_Rect m_destinationRectangle;
 	bool isRunning;
+
+	SDL_Surface* g_background;
+	SDL_Window* sdlWindow;
 	static SDL_Renderer* m_pRenderer;
+	SDL_Surface* pTempSurface;
+	SDL_Texture* m_pTexture;
+
 
 };
 
