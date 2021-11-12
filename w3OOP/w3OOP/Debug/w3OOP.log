@@ -1,2 +1,4 @@
-﻿  main.cpp
+﻿  Player.cpp
+E:\Study\AIT\Game engine\w3OOP\w3OOP\Player.cpp(95,48): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+E:\Study\AIT\Game engine\w3OOP\w3OOP\Player.cpp(96,48): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
   w3OOP.vcxproj -> E:\Study\AIT\Game engine\w3OOP\Debug\w3OOP.exe

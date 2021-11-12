@@ -7,8 +7,8 @@ Player::Player(int m_pframes, const char* m_ptexture, int posX, int posY)
 	m_positionX = posX;
 	m_positionY = posY;
 
-	m_velocity_right = new Vector2D(5, 0);
-	m_velocity_left = new Vector2D(-5, 0);
+	m_velocity_right = new Vector2D(0, 0);
+	m_velocity_left = new Vector2D(0, 0);
 }
 
 Player::~Player()

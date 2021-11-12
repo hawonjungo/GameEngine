@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "Vector2D.h"
 class Enemy:public GameObject
 {
 public:
@@ -12,6 +13,8 @@ public:
 	
 	void autoAttack();
 
+	void handleEvents();
+	void enemyMove(Vector2D*);
 
 	void setFlip(bool flip) {
 		flipToLeft = flip;
@@ -25,5 +28,8 @@ private:
 	int m_positionX;
 	int m_positionY;
 	bool flipToLeft = false;
+
+	Vector2D* m_velocity_right;
+	Vector2D* m_velocity_left;
 };
 

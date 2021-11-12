@@ -7,13 +7,9 @@
 #include <iostream>
 
 
-
-
-
 SDL_Window* g_windows = NULL;
 SDL_Surface* gScreenSurface = NULL;
 SDL_Surface* g_background = NULL;
-
 
 bool loadMedia()
 {
@@ -46,10 +42,11 @@ int main(int argc, char** argv) {
 	player->draw();
 	
 
-	//bk->draw();
-	//bk->update();
-	//bk->render();
-
+	bk->draw();
+	bk->update();
+	bk->render();
+	SDL_RenderPresent(bk->getRenderer());
+	SDL_RenderClear(bk->getRenderer());
 
 
 	if(loadMedia())
@@ -63,7 +60,7 @@ int main(int argc, char** argv) {
 
 	enemy->draw();
 	enemy->setFlip(true);
-	
+
 
 
 
@@ -78,15 +75,13 @@ int main(int argc, char** argv) {
 		enemy->update();
 		enemy->render();
 
-		
-
-	
-
+		bk->update();
+		bk->render();
+			
 		SDL_RenderPresent(player->getRenderer());
 		SDL_RenderClear(player->getRenderer());
 		
-	
-		
+			
 			
 	}
 	player->clean();
