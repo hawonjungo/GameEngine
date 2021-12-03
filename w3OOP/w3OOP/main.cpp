@@ -24,7 +24,6 @@ bool loadMedia()
 }
 
 
-
 int main(int argc, char** argv) {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
 		std::cout << "Subsystem initialised!.. " << std::endl;
@@ -35,7 +34,7 @@ int main(int argc, char** argv) {
 
 	   
 	Player* player = new Player(8,"assets/run.bmp",0,595);
-	Enemy* enemy = new Enemy(8, "assets/mushroom_run.png", 600, 607);
+	Enemy* enemy = new Enemy(8, "assets/mushroom_run.png", 1000, 607);
 	BK* bk = new BK(1, "assets/bk.png", 0, 0);
 
 	player->load("My Game",1280,940);
@@ -56,15 +55,8 @@ int main(int argc, char** argv) {
             SDL_Delay( 2000 );
         }
 
-
-
 	enemy->draw();
 	enemy->setFlip(true);
-
-
-
-
-
 
 	while (player->running()) {
 	
@@ -79,10 +71,8 @@ int main(int argc, char** argv) {
 		bk->render();
 			
 		SDL_RenderPresent(player->getRenderer());
-		SDL_RenderClear(player->getRenderer());
-		
-			
-			
+		SDL_RenderClear(player->getRenderer());		
+						
 	}
 	player->clean();
 	

@@ -10,7 +10,6 @@ public:
 	void draw();
 	void update();
 	void render();
-	
 	void autoAttack();
 
 	void handleEvents();
@@ -19,7 +18,18 @@ public:
 	void setFlip(bool flip) {
 		flipToLeft = flip;
 	}
-
+	void setPosX(const int& posX) {
+		m_positionX = posX;
+	}
+	void setPosY(const int& posY) {
+		m_positionX = posY;
+	}
+	int getPosX() {
+		return m_positionX;
+	}
+	int getPosY() {
+		return m_positionY;
+	}
 
 
 private:

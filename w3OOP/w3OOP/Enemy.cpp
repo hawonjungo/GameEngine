@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include <cstdlib>
 
 Enemy::Enemy(int m_pframes, const char* m_ptexture, int posX, int posY)
 {
@@ -51,6 +52,11 @@ void Enemy::autoAttack()
 
 void Enemy::handleEvents()
 {
+
+
+	enemyMove(m_velocity_left);
+	
+
 	SDL_Event event;
 	while (SDL_PollEvent(&event)) {
 		switch (event.type) {
@@ -96,7 +102,12 @@ void Enemy::handleEvents()
 void Enemy::enemyMove(Vector2D* m_velocity)
 {
 	m_destinationRectangle.x += m_velocity->getX();
-	m_destinationRectangle.y += m_velocity->getY();
+	if (m_destinationRectangle.x < 0) {
+		m_destinationRectangle.x = 1000;
+		  	
+	}
+	/*m_destinationRectangle.x += m_velocity->getX();
+	m_destinationRectangle.y += m_velocity->getY();*/
 }
 
 
